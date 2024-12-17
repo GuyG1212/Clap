@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clap - Connect Like a Pro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: white;
+            color: #333;
+        }
+
+        .page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .page.active {
+            opacity: 1;
+        }
+
+        .logo {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #2196F3, #4CAF50);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #2196F3, #4CAF50);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .visual {
+            margin: 2rem 0;
+            width: 200px;
+            height: 200px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 2rem auto;
+        }
+
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(45deg, #2196F3, #4CAF50);
+            transition: width 1.5s ease-in-out;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.2rem; }
+            .visual { width: 150px; height: 150px; }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="page1" class="page active">
+        <div class="logo">👏</div>
+        <h1 class="animate__animated animate__fadeIn">Clap - Connect Like a Pro</h1>
+        <h2 class="animate__animated animate__fadeIn animate__delay-1s">Unleash the power of networking and build meaningful connections effortlessly</h2>
+        <button class="btn animate__animated animate__fadeIn animate__delay-2s" onclick="showPage(2)">Get Started</button>
+    </div>
+
+    <div id="page2" class="page hidden">
+        <div class="logo">🤝</div>
+        <h1>Connect Deeper, Reach Further</h1>
+        <h2>Map your network, discover opportunities, and leverage every connection</h2>
+        <div class="visual">
+            <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#2196F3" stroke-width="2"/>
+                <circle cx="50" cy="50" r="30" fill="none" stroke="#4CAF50" stroke-width="2"/>
+                <circle cx="50" cy="50" r="15" fill="none" stroke="#FFC107" stroke-width="2"/>
+            </svg>
+        </div>
+        <button class="btn" onclick="showPage(3)">Next</button>
+    </div>
+
+    <div id="page3" class="page hidden">
+        <div class="logo">⭐</div>
+        <h1>Help Others, Get Higher Ratings</h1>
+        <h2>The more you help others achieve their goals, the more your network presence and influence grow</h2>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+        <button class="btn" onclick="alert('Welcome to Clap!')">Start Now</button>
+    </div>
+
+    <script>
+        function showPage(pageNum) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('active');
+            });
+            
+            const newPage = document.getElementById(`page${pageNum}`);
+            newPage.classList.remove('hidden');
+            setTimeout(() => newPage.classList.add('active'), 100);
+
+            if(pageNum === 3) {
+                setTimeout(() => {
+                    document.querySelector('.progress').style.width = '80%';
+                }, 500);
+            }
+        }
+    </script>
+</body>
+</html>
